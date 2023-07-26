@@ -1,7 +1,6 @@
 // Assuming you have the required libraries and modules imported
 import { uploadPhoto, createUser } from './utils.js';
 
-
 function getResponseFromAPI() {
   // Replace the API call below with the actual API call you want to make.
   // In this case, we are calling the `uploadPhoto` and `createUser` functions from utils.js
