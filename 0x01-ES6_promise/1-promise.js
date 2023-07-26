@@ -1,32 +1,26 @@
 function getFullResponseFromAPI(success) {
   return new Promise((resolve, reject) => {
     if (success) {
-      // Resolve the Promise with a successful response
       resolve({
         status: 200,
-        body: 'Success',
+        body: 'Success'
       });
     } else {
-      // Reject the Promise with an error message
       reject(new Error('The fake API is not working currently'));
     }
   });
 }
+// Example usage with async/await
+async function exampleUsage() {
+  try {
+    const response = await getFullResponseFromAPI(true);
+    console.log('API Response:', response);
+    // Handle the response data here
+  } catch (error) {
+    console.error('API Error:', error.message);
+    // Handle the error here
+  }
+}
 
-// Test the function with `success = true`
-getFullResponseFromAPI(true)
-  .then(response => {
-    console.log("Success Response:", response);
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
-
-// Test the function with `success = false`
-getFullResponseFromAPI(false)
-  .then(response => {
-    console.log("Success Response:", response);
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
+// Call the example usage function
+exampleUsage();
