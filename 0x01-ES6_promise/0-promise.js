@@ -1,26 +1,30 @@
-function getResponseFromAPI() {
-  return new Promise((resolve, reject) => {
-    // Replace the API call below with your actual API call
-    // For example, if you're using fetch:
-    // fetch('https://api.example.com/data')
-    //   .then(response => response.json())
-    //   .then(data => resolve(data))
-    //   .catch(error => reject(error));
+// Assuming you have the required libraries and modules imported
 
-    // Simulating an API call that resolves after 2 seconds
-    setTimeout(() => {
-      resolve("API response data");
-      // If there's an error, you can reject the Promise like this:
-      // reject(new Error("API request failed"));
-    }, 2000);
+function getResponseFromAPI() {
+  // Replace the API call below with the actual API call you want to make.
+  // In this case, we are calling the `uploadPhoto` and `createUser` functions from utils.js
+  return new Promise((resolve, reject) => {
+    // First, call uploadPhoto
+    utils.uploadPhoto(photoData)
+      .then(uploadPhotoResponse => {
+        // If uploadPhoto is successful, call createUser
+        utils.createUser(userData)
+          .then(createUserResponse => {
+            // If both uploadPhoto and createUser are successful, resolve with the combined responses
+            resolve({
+              uploadPhoto: uploadPhotoResponse,
+              createUser: createUserResponse,
+            });
+          })
+          .catch(error => {
+            // If there's an error in createUser, reject with the error
+            reject(error);
+          });
+      })
+      .catch(error => {
+        // If there's an error in uploadPhoto, reject with the error
+        reject(error);
+      });
   });
 }
 
-// Using the getResponseFromAPI function
-getResponseFromAPI()
-  .then(response => {
-    console.log("API Response:", response);
-  })
-  .catch(error => {
-    console.error("Error fetching data from API:", error);
-  });
